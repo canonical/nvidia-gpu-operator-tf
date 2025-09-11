@@ -60,7 +60,7 @@ resource "helm_release" "nvidia_gpu_operator" {
   # Pass optional file (if provided) + inline YAML
   # Prioritize values from the YAML over default and explicit terraform values
   values = compact([
-    file(var.helm_config_file_path),
+    var.helm_config_file_path != null && var.helm_config_file_path != "" ? file(var.helm_config_file_path) : null,
     yamlencode(local.inline_values),
   ])
 
