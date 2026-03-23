@@ -34,7 +34,7 @@ locals {
       rdma           = local.driver_rdma_block
     },
     # Only include "version" when non-null/non-empty
-    var.driver_version != null && trim(var.driver_version) != "" ? { version = var.driver_version } : {} 
+    var.driver_version != null && trimspace(var.driver_version) != "" ? { version = var.driver_version } : {} 
   )
 
   inline_values = {
